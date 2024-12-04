@@ -1,0 +1,111 @@
+/* Definindo o fundo escuro para todo o body */
+body {
+    background-color: #121212; /* Cor de fundo escuro */
+    color: #e0e0e0; /* Cor do texto clara */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
+
+/* Estilizando os links */
+a {
+    color: #406dff; /* Cor de destaque para links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo dos formulários */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+}
+
+input[type="submit"],
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6200ea; /* Cor de destaque */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #3700b3;
+}
+
+/* Mensagens de erro e sucesso */
+ul {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    list-style: none;
+}
+
+ul li {
+    color: #f13e3e; /* Cor para mensagens */
+    margin: 5px 0;
+}
+
+/* Estilizando os links e botões para navegação */
+p {
+    text-align: center;
+    font-size: 16px;
+}
+
+p a {
+    font-size: 16px;
+    color: #6200ea;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Ajuste para os campos do formulário em telas pequenas */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+
+    input[type="submit"],
+    button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,5 @@
+pip install flask
+pip install pysqlite3
+pip install werkzeug
+
+python app.py

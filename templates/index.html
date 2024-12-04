@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <!-- Adicionando Chart.js -->
+    <title>Gestão de Inventário</title>
+</head>
+<body>
+    <h1>Gestão de Inventário</h1>
+
+    <!-- Navegação para as ações -->
+    <nav>
+        <ul>
+            <li><a href="/add">Adicionar Produto</a></li>
+            <li><a href="/relatorio">Relatório de Movimentações</a></li>
+            <li><a href="/logout">Logout</a></li>  <!-- Link para logout -->
+        </ul>
+    </nav>
+
+    <h2>Produtos no Inventário</h2>
+    
+    <!-- Tabela com a lista de produtos -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto[0] }}</td>
+                <td>{{ produto[1] }}</td>
+                <td>{{ produto[2] }}</td>
+                <td>{{ produto[3] }}</td>
+                <td>
+                    <a href="/edit/{{ produto[0] }}">Editar</a> |
+                    <a href="/delete/{{ produto[0] }}">Excluir</a> |
+                    <a href="/movimentacao/{{ produto[0] }}">Registrar Movimentação</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Gráfico de Quantidade de Produtos -->
+    <h3>Gráfico de Quantidade dos Produtos</h3>
+    <div class="chart-container">
+        <canvas id="inventoryChart"></canvas>  <!-- Canvas para o gráfico -->
+    </div>
+
+    <script>
+        // Preparando os dados dos produtos do Flask para o JavaScript
+        var productNames = {{ produtos | map(attribute='1') | list | tojson }};  // Nome dos produtos
+        var productQuantities = {{ produtos | map(attribute='2') | list | tojson }};  // Quantidade dos produtos
+
+        // Criação do gráfico de barras
+        var ctx = document.getElementById('inventoryChart').getContext('2d');
+        var inventoryChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: productNames,  // Nomes dos produtos
+                datasets: [{
+                    label: 'Quantidade de Produtos',
+                    data: productQuantities,  // Quantidade dos produtos
+                    backgroundColor: '#6200ea',  // Cor de fundo das barras
+                    borderColor: '#3700b3',  // Cor da borda das barras
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
